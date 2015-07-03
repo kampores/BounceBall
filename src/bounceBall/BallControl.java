@@ -4,19 +4,28 @@ import java.awt.Color;
 
 public class BallControl {
 
-	private Ball b;
-	private BallDraw d;
-
+	private BallBox ballBox;
+	private Balls balls;	
+	private Ball ball;
+	private BallDrawPanel ballDrawPanel;
+	private BallWindow ballWindow;
+	
 	public BallControl(){
-		b = new Ball(200,200,1,1,10,Color.RED);
-		d = new BallDraw();
+		ballBox = new BallBox(100, 100, 300, 200);
+		balls = new Balls(ballBox);
+		balls.createBalls();
+//		ball = new Ball(200,200,1,1,10,Color.RED);
+		this.ball = balls.getBall(0);
+		ballDrawPanel = new BallDrawPanel(ballBox, ball);
+		ballWindow = new BallWindow(500,500,ballDrawPanel);		
 	}
 
 	public void ballControl(){
 		while(true){
 			direction();
 			movement();
-			d.repaint();
+			ballDrawPanel.redraw(ball);
+			ballWindow.writeLabel(ball);
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException ignore) {	}
@@ -25,30 +34,29 @@ public class BallControl {
 	
 	private void movement() {
 		// TODO Auto-generated method stub
-		b.setBallPositionX(b.getBallPositionX()+b.getBallDirectionX());
-		b.setBallPositionY(b.getBallPositionY()+b.getBallDirectionY());		
+		ball.setBallPositionX(ball.getBallPositionX()+ball.getBallDirectionX());
+		ball.setBallPositionY(ball.getBallPositionY()+ball.getBallDirectionY());		
 	}
 
 	private void direction() {
 		// TODO Auto-generated method stub
-		if(b.getBallPositionX()>390){
-			b.setBallDirectionX(-1);
+		if(ball.getBallPositionX()>ballBox.getBoxX()+ballBox.getBoxWidth()-ball.getBallRadius()*2){
+			ball.setBallDirectionX(-1);
 		}
-		if(b.getBallPositionX()<100){
-			b.setBallDirectionX(1);
+		if(ball.getBallPositionX()<ballBox.getBoxX()){
+			ball.setBallDirectionX(1);
 		}
-		if(b.getBallPositionY()>290){
-			b.setBallDirectionY(-1);
+		if(ball.getBallPositionY()>ballBox.getBoxY()+ballBox.getBoxHeight()-ball.getBallRadius()*2){
+			ball.setBallDirectionY(-1);
 		}
-		if(b.getBallPositionY()<100){
-			b.setBallDirectionY(1);
+		if(ball.getBallPositionY()<ballBox.getBoxY()){
+			ball.setBallDirectionY(1);
 		}
 	}
+	
 	public static void main(String[] args) {
-		BallControl c;
-		Window w;
-		c = new BallControl();
-		w = new Window(500,500);
-		c.ballControl();
+		BallControl ballControl;
+		ballControl = new BallControl();
+		ballControl.ballControl();
 	}
 }

@@ -1,11 +1,8 @@
 package bounceBall;
 
 import java.awt.Color;
-import java.io.ObjectInputStream.GetField;
 
-import javax.swing.JComponent;
-
-public class Ball extends JComponent {
+public class Ball{
 
 	private int ballPositionX;
 	private int ballPositionY;	
@@ -21,6 +18,10 @@ public class Ball extends JComponent {
 		this.ballDirectionY=ballDirectionY;
 		this.ballRadius=ballRadius;
 		this.ballColor=ballColor;
+	}
+	
+	public Ball getBall() {
+		return this;
 	}
 
 	public Color getBallColor() {
