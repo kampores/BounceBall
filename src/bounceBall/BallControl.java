@@ -1,44 +1,46 @@
 package bounceBall;
 
-import java.awt.Color;
-
 public class BallControl {
 
 	private BallBox ballBox;
 	private Balls balls;	
-	private Ball ball;
-	private BallDrawPanel ballDrawPanel;
 	private BallWindow ballWindow;
 	
+	final int BALLWINDOW_LENGTH = 500;
+	final int BALLWINDOW_HEIGHT = 500;	
+	
+	final int BOUNCING_BALLS = 3;
+	
 	public BallControl(){
-		ballBox = new BallBox(100, 100, 300, 200);
+		ballBox = new BallBox();
 		balls = new Balls(ballBox);
-		balls.createBalls();
-//		ball = new Ball(200,200,1,1,10,Color.RED);
-		this.ball = balls.getBall(0);
-		ballDrawPanel = new BallDrawPanel(ballBox, ball);
-		ballWindow = new BallWindow(500,500,ballDrawPanel);		
+		for(int i=0;i<BOUNCING_BALLS;i++){
+			balls.createBalls();
+		}
+		ballWindow = new BallWindow(BALLWINDOW_LENGTH,BALLWINDOW_HEIGHT,ballBox,balls);
 	}
 
 	public void ballControl(){
 		while(true){
-			direction();
-			movement();
-			ballDrawPanel.redraw(ball);
-			ballWindow.writeLabel(ball);
+			for(Ball ball : balls.getListBalls()){
+				ballDirectionControl(ball);
+				ballMove(ball);
+			}
+			ballWindow.redraw();
+			ballWindow.writeLabel(balls,0);
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException ignore) {	}
 		}
 	}
 	
-	private void movement() {
+	private void ballMove(Ball ball) {
 		// TODO Auto-generated method stub
 		ball.setBallPositionX(ball.getBallPositionX()+ball.getBallDirectionX());
 		ball.setBallPositionY(ball.getBallPositionY()+ball.getBallDirectionY());		
 	}
 
-	private void direction() {
+	private void ballDirectionControl(Ball ball) {
 		// TODO Auto-generated method stub
 		if(ball.getBallPositionX()>ballBox.getBoxX()+ballBox.getBoxWidth()-ball.getBallRadius()*2){
 			ball.setBallDirectionX(-1);

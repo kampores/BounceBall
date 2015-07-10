@@ -16,11 +16,15 @@ public class BallWindow{
 	private JFrame frame;
 	private JPanel panel;
 	private Dimension frameSize,screenSize;
+
+	public BallWindow(int width,int height,BallBox ballBox,Balls balls){
+		this.panel = new BallDrawPanel(ballBox,balls);		
+		drawWindow(width,height);
+	}	
 	
-	public BallWindow(int width,int height,JPanel panel){
+	private void drawWindow(int width,int height){
 		label = new JLabel("");
 		frame = new JFrame("");
-		this.panel = panel;
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(width, height);
 		frameSize = frame.getSize();
@@ -32,8 +36,21 @@ public class BallWindow{
 		frame.setVisible(true);
 	}
 	
-	public void writeLabel(Ball ball){
-		this.ball=ball;
+	public void writeLabel(Balls balls,int index){
+		this.ball=balls.getBall(index);
 		label.setText("X:"+ball.getBallPositionX()+"Y:"+ball.getBallPositionY());			
 	}
+	
+	public void redraw(){
+		panel.repaint();
+	}	
+	
+/*	public static void main(String[] args) {
+		Runnable doBouncingBall = new Runnable() {
+			public void run() {
+				BallWindow ballWindow = new BallWindow(500,500);		
+			}
+		};
+		SwingUtilities.invokeLater(doBouncingBall);
+	}*/
 }

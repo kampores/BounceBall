@@ -7,8 +7,19 @@ public class BallBox {
 	private int boxWidth;
 	private int boxHeight;
 	
+	final int BALLBOX_XPOS = 100;
+	final int BALLBOX_YPOS = 100;
+	final int BALLBOX_LENGTH = 300;
+	final int BALLBOX_HEIGHT = 200;	
+	
+	public BallBox() {
+		this.boxX = BALLBOX_XPOS;
+		this.boxY = BALLBOX_YPOS;
+		this.boxWidth = BALLBOX_LENGTH;
+		this.boxHeight = BALLBOX_HEIGHT;
+	}
+	
 	public BallBox(int boxX, int boxY, int boxWidth, int boxHeight) {
-		super();
 		this.boxX = boxX;
 		this.boxY = boxY;
 		this.boxWidth = boxWidth;
