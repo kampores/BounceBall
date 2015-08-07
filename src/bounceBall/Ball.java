@@ -8,18 +8,38 @@ public class Ball{
 	private int ballPositionY;	
 	private int ballDirectionX;
 	private int ballDirectionY;
-	private int ballRadius;		
+	private int ballRadius;
+	private int ballNumber;
+	public enum BallState {RUN,STOP};
+	private BallState ballState;
 	private Color ballColor;
 	
-	public Ball(int ballPositionX, int ballPositionY, int ballDirectionX, int ballDirectionY, int ballRadius, Color ballColor){
+	
+	
+
+	public Ball(int ballPositionX, int ballPositionY, int ballDirectionX, int ballDirectionY, int ballRadius, Color ballColor, int ballNumber, BallState ballState){
 		this.ballPositionX=ballPositionX;
 		this.ballPositionY=ballPositionY;
 		this.ballDirectionX=ballDirectionX;
 		this.ballDirectionY=ballDirectionY;
 		this.ballRadius=ballRadius;
 		this.ballColor=ballColor;
+		this.ballNumber=ballNumber;
+		this.ballState=ballState;
 	}
 	
+	public BallState getBallState() {
+		return ballState;
+	}
+
+	public void setBallState(BallState ballState) {
+		this.ballState = ballState;
+	}
+
+	public int getBallNumber() {
+		return ballNumber;
+	}
+
 	public Ball getBall() {
 		return this;
 	}

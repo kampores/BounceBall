@@ -1,5 +1,5 @@
 package bounceBall;
-
+/*
 public class BallBox {
 
 	private int boxX;
@@ -9,13 +9,13 @@ public class BallBox {
 	
 	final int BALLBOX_XPOS = 100;
 	final int BALLBOX_YPOS = 100;
-	final int BALLBOX_LENGTH = 300;
+	final int BALLBOX_WIDTH = 300;
 	final int BALLBOX_HEIGHT = 200;	
 	
 	public BallBox() {
 		this.boxX = BALLBOX_XPOS;
 		this.boxY = BALLBOX_YPOS;
-		this.boxWidth = BALLBOX_LENGTH;
+		this.boxWidth = BALLBOX_WIDTH;
 		this.boxHeight = BALLBOX_HEIGHT;
 	}
 	
@@ -43,3 +43,4 @@ public class BallBox {
 	}	
 	
 }
+*/
